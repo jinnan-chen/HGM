@@ -5,7 +5,10 @@ Project page:
 <p align="center">
   <img src="./imgs/teaser.png" alt="Teaser"  style="width:80%">
 </p>
+
 We propose single-view generalizable Human Gaussian model (HGM), a diffusion-guided framework for 3D human modeling from a single image.
+
+
 ## Citation
 If you find our code or paper helps, please consider citing:
 ```

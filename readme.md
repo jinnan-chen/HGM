@@ -1,5 +1,4 @@
 # Generalizable Human Gaussians from Single-View Image(HGM).
-Project page: 
 ## [Project Page](https://jinnan-chen.github.io/projects/HGM/) | [Paper](https://arxiv.org/abs/2406.06050)
 
 <p align="center">

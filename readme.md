@@ -1,4 +1,4 @@
-# Generalizable Human Gaussians from Single-View Image(HGM).
+# Generalizable Human Gaussians from Single-View Image(ICLR 2025).
 ## [Project Page](https://jinnan-chen.github.io/projects/HGM/) | [Paper](https://arxiv.org/abs/2406.06050)
 
 

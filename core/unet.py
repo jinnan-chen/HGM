@@ -75,12 +75,10 @@ class MVAttention(nn.Module):
 
     def forward(self, x):
         # x: [B*V, C, H, W]
-        # import ipdb
-        # ipdb.set_trace()
+  
         BV, C, H, W = x.shape
         B = BV // self.num_frames # assert BV % self.num_frames == 0
-        # import ipdb
-        # ipdb.set_trace()
+      
         res = x
         x = self.norm(x)
 
@@ -236,8 +234,7 @@ class DownBlock(nn.Module):
         for attn, net in zip(self.attns, self.nets):
             x = net(x)
             if attn:
-                # import ipdb
-                # ipdb.set_trace()
+         
                 x = attn(x)
             xs.append(x)
 
@@ -327,8 +324,7 @@ class UpBlock(nn.Module):
                 x = attn(x)
             
         if self.upsample:
-            # import ipdb
-            # ipdb.set_trace()
+   
             x = F.interpolate(x, scale_factor=2.0, mode='nearest')
             x = self.upsample(x)
 
@@ -424,8 +420,7 @@ class UNet(nn.Module):
             x = checkpoint(self.mid_block, x)
         else:
             x = self.mid_block(x)
-        # import ipdb
-        # ipdb.set_trace()
+    
         # up
 
         for block in self.up_blocks:
@@ -446,8 +441,7 @@ class UNet(nn.Module):
         else:
             x = self.norm_out(x)
             x = F.silu(x)
-    # import ipdb
-    # ipdb.set_trace()
+
             x = self.conv_out(x).view(x.shape[0],14,x.shape[-2],x.shape[-1] ) # [B, Cout, H', W']
 
         return x
@@ -542,8 +536,7 @@ class UNet_feats(nn.Module):
             x = checkpoint(self.mid_block, x)
         else:
             x = self.mid_block(x)
-        # import ipdb
-        # ipdb.set_trace()
+ 
         # up
 
         for block in self.up_blocks:
@@ -565,8 +558,7 @@ class UNet_feats(nn.Module):
             
             x = self.norm_out(x)
             x = F.silu(x)
-        # import ipdb
-        # ipdb.set_trace()
+      
             x = self.conv_out(x).view(x.shape[0],14,x.shape[-2],x.shape[-1] ) # [B, Cout, H', W']
 
         return x,feats
@@ -609,19 +601,16 @@ class UpBlock_pt(nn.Module):
         for attn, net in zip(self.attns, self.nets):
             res_x = xs[-1]
             xs = xs[:-1]
-            # import ipdb
-            # ipdb.set_trace()
+  
             x = torch.cat([x, res_x], dim=1)
             x = net(x)
             if attn:
                 x = attn(x)
             
         if self.upsample:
-            # import ipdb
-            # ipdb.set_trace()
-            # x = F.interpolate(x, size=2*x.shape[-1]-1 if x.shape[-1]!=53433 else 2*x.shape[-1], mode='nearest')
-            x = F.interpolate(x, size=2*x.shape[-1]-1 if x.shape[-1] not in [431,3445,8192//2,7846//2,1310//2 ,36864//2,73728 //2,73728 , 5238//2, 20665,8192,18432//2,53433,16384,32768,65536,24576//2,49152//2,98304//2,98304,172402//2,262144//2] else 2*x.shape[-1], mode='nearest')
-            # x = F.interpolate(x, size=2*x.shape[-1]-1 if x.shape[-1]!=28857 else 2*x.shape[-1], mode='nearest')
+  
+            x = F.interpolate(x, size=2*x.shape[-1], mode='nearest')
+   
             x = self.upsample(x)
 
         return x
@@ -698,8 +687,7 @@ class DownBlock_pt(nn.Module):
                 x = attn(x)
             xs.append(x)
         if self.downsample:
-            # import ipdb
-            # ipdb.set_trace()
+    
             x = self.downsample(x)
             xs.append(x)
   
@@ -825,8 +813,7 @@ class MixNet(nn.Module):
         
 
     def forward(self, x):
-        # import ipdb
-        # ipdb.set_trace()
+      
         if self.grad_checkpointing:
             x=checkpoint(self.conv_in,x)
         else:
@@ -839,7 +826,7 @@ class MixNet(nn.Module):
                 x, xs =checkpoint(block,x)
             else:
                 x, xs = block(x)
-            # ipdb.set_trace()
+
             xss.extend(xs)
         
         # mid
@@ -855,7 +842,7 @@ class MixNet(nn.Module):
                 x = block(x, xs)
 
         # last
-        # ipdb.set_trace()
+    
         if self.grad_checkpointing:
             x =checkpoint(self.norm_out,x)
             x = F.silu(x)
@@ -897,8 +884,7 @@ class MVAttention_cross(nn.Module):
 
     def forward(self, x,y):
         # x: [B*V, C, H, W]
-        # import ipdb
-        # ipdb.set_trace()
+
         BV, C, N= x.shape
         B = BV // self.num_frames # assert BV % self.num_frames == 0
 

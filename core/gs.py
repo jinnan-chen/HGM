@@ -16,8 +16,7 @@ def build_rotation(r):
     norm = torch.sqrt(r[:,0]*r[:,0] + r[:,1]*r[:,1] + r[:,2]*r[:,2] + r[:,3]*r[:,3])
 
     q = r / norm[:, None]
-    # import ipdb
-    # ipdb.set_trace()
+
     R = torch.zeros((q.size(0), 3, 3), device='cuda')
 
     r = q[:, 0]
@@ -72,8 +71,7 @@ class GaussianRenderer:
             scales = gaussians[b, :, 4:7].contiguous().float()
             rotations = gaussians[b, :, 7:11].contiguous().float()
             rgbs = gaussians[b, :, 11:].contiguous().float() # [N, 3]
-            # import ipdb
-            # ipdb.set_trace()
+       
             for v in range(V):
                 
                 # render novel views

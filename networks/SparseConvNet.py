@@ -105,31 +105,23 @@ class SparseConvNet(nn.Module):
         self.net.append(double_conv(out_dim[-1], out_dim[-1], 'subm'+str(n_layers)))
 
     def forward(self, x, grid_coords=None):
-        # import ipdb
-        # ipdb.set_trace()
+
         x = self.net[0](x)
         features = []
         for i in range(self.n_layers):
             x = self.net[2*i+1](x)
             x = self.net[2*i+2](x)
-            # import ipdb
-            # ipdb.set_trace()
+       
             feat = x.dense()
 
             if grid_coords is not None:
-                # import ipdb
-                # ipdb.set_trace()
+              
                 features.append( grid_sample_3d (feat,
                                               grid_coords))
-                # features.append(F.grid_sample(feat,
-                #                               grid_coords,
-                #                               padding_mode='zeros',
-                #                               align_corners=True
-                #                              ))
+             
             else:
                 features.append(feat)
-        # import ipdb
-        # ipdb.set_trace()
+      
         if grid_coords is not None:
             features = torch.cat(features, dim=1)
             features = features.view(features.size(0), -1, features.size(4))

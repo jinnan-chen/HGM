@@ -49,8 +49,7 @@ class MultiHeadCrossAttention(nn.Module):
         q = self.linear_q(x).reshape(batch, n, nh, dk).transpose(1, 2)  # (batch, nh, n, dk)
         k = self.linear_k(y).reshape(batch, n2, nh, dk).transpose(1, 2)  # (batch, nh, n, dk)
         v = self.linear_v(y).reshape(batch, n2, nh, dv).transpose(1, 2)  # (batch, nh, n, dv)
-        # import ipdb
-        # ipdb.set_trace()
+
         dist = torch.matmul(q, k.transpose(2, 3)) * self._norm_fact  # batch, nh, n, n
         dist = torch.softmax(dist, dim=-1)  # batch, nh, n, n
 
@@ -171,8 +170,7 @@ class MultiHeadAttention(nn.Module):
             q, attn = checkpoint(self.attention,q, k, v, mask)
         else:
             q, attn = self.attention(q, k, v, mask=mask)
-        # import ipdb
-        # ipdb.set_trace()
+
         # Transpose to move the head dimension back: b x lq x n x dv
         # Combine the last two dimensions to concatenate all the heads together: b x lq x (n*dv)
         q = q.transpose(1, 2).contiguous().view(sz_b, len_q, -1)

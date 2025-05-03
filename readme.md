@@ -68,12 +68,9 @@ Our code is based on:
 ## Citation
 If you find our code or paper helps, please consider citing:
 ```
-@misc{chen2024generalizable,
-      title={Generalizable Human Gaussians from Single-View Image}, 
-      author={Jinnan Chen and Chen Li and Jianfeng Zhang and Hanlin Chen and Buzhen Huang and Gim Hee Lee},
-      year={2024},
-      eprint={2406.06050},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-}
+@article{chen2024generalizable,
+  title={Generalizable Human Gaussians from Single-View Image},
+  author={Chen, Jinnan and Li, Chen and Zhang, Jianfeng and Zhu, Lingting and Huang, Buzhen and Chen, Hanlin and Lee, Gim Hee},
+  journal={arXiv preprint arXiv:2406.06050},
+  year={2024}}
 ```

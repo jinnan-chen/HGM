@@ -60,9 +60,11 @@ We supervise gaussians from three different sources:
 - Gaussians from the SMPL branch
 - Merged Gaussians from both branches
 
-## Infer
+## Checkpoint:https://drive.google.com/file/d/120Ju9WAmLo6vnn_SafTdzxbN3ZLrvdoP/view?usp=drive_link
 
+## Infer
 CUDA_VISIBLE_DEVICES=0 python3 infer.py big --resume ### --workspace ### --num_workers 1 --num_input_views 1 --mode '5'  --dataset ### --mode4 'att'  --mode5 'att'  --smplx
+
 
 ## Acknowledgements
 Our code is based on:

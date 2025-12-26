@@ -61,7 +61,7 @@ We supervise gaussians from three different sources:
 - Merged Gaussians from both branches
 
 ## Checkpoint
-https://drive.google.com/file/d/120Ju9WAmLo6vnn_SafTdzxbN3ZLrvdoP/view?usp=drive_link
+https://drive.google.com/drive/folders/1dYxLdyCKUBbH_SDBopGhh_5CRZUVKar8?usp=sharing
 
 ## Infer
 CUDA_VISIBLE_DEVICES=0 python3 infer.py big --resume ### --workspace ### --num_workers 1 --num_input_views 1 --mode '5'  --dataset ### --mode4 'att'  --mode5 'att'  --smplx
